@@ -17,7 +17,7 @@ class CalendarsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create calendar" do
     assert_difference('Calendar.count') do
-      post calendars_url, params: { calendar: { date: @calendar.date, type: @calendar.type } }
+      post calendars_url, params: { calendar: { date: @calendar.date, genre: @calendar.genre } }
     end
 
     assert_redirected_to calendar_url(Calendar.last)
@@ -34,7 +34,7 @@ class CalendarsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update calendar" do
-    patch calendar_url(@calendar), params: { calendar: { date: @calendar.date, type: @calendar.type } }
+    patch calendar_url(@calendar), params: { calendar: { date: @calendar.date, genre: @calendar.genre } }
     assert_redirected_to calendar_url(@calendar)
   end
 
