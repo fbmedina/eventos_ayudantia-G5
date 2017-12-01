@@ -1,27 +1,33 @@
-<h1>Calendario</h1>
+<h1>Calendarios</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Genre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row align-items-end">
+  <% @calendars.each do |calendar| %>
+    <div class="col-4">
+      <h2><%= calendar.name %></h2>
+      <p class="
+        <%=
+          if calendar.genre == 'evento'
+            'text-success'
 
-  <tbody>
-    <% @calendars.each do |calendar| %>
-      <tr>
-        <td><%= calendar.date %></td>
-        <td><%= calendar.genre %></td>
-        <td><%= link_to 'Show', calendar %></td>
-        <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
-        <td><%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          elsif calendar.genre == 'cumpleaños'
+            'text-warning'
 
-<br>
+          else 
+            'text-primary'
 
-<%= link_to 'New Calendar', new_calendar_path, class: "btn btn-primary" %>
+          end
+        %>
+      ">
+        <%= calendar.genre %>
+      </p>
+      <p><%= calendar.date %></p>
+      <%= link_to 'Show', calendar, class: "btn btn-success" %>
+      <%= link_to 'Edit', edit_calendar_path(calendar), class: "btn btn-info" %>
+      <%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>
+<hr>
+<div>
+  <%= link_to 'New Calendar', new_calendar_path, class: "btn btn-primary" %>
+</div>
