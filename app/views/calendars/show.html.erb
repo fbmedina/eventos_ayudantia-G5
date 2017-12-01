@@ -1,12 +1,26 @@
-<p>
-  <strong>Date:</strong>
-  <%= @calendar.date %>
-</p>
+<div>
+  <h2><%= @calendar.name %></h2>
+  <p class="
+    <%=
+      if @calendar.genre == 'evento'
+        'text-success'
 
-<p>
-  <strong>Genre:</strong>
-  <%= @calendar.genre %>
-</p>
+      elsif @calendar.genre == 'cumpleaños'
+        'text-warning'
 
-<%= link_to 'Edit', edit_calendar_path(@calendar) %> |
-<%= link_to 'Back', calendars_path %>
+      else 
+        'text-primary'
+
+      end
+    %>
+  ">
+    <%= @calendar.genre %>
+  </p>
+  <p><%= @calendar.date %></p>
+  <%= link_to 'Edit', edit_calendar_path(@calendar), class: "btn btn-info" %>
+  <%= link_to 'Destroy', @calendar, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</div>
+
+<div>
+	<%= link_to 'Back', calendars_path %>
+</div>
